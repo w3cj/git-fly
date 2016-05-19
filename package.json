@@ -1,0 +1,24 @@
+{
+  "name": "git-fly",
+  "version": "1.0.0",
+  "description": "Command line tool to temporarily and easily clone and run repos on the fly",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "git",
+    "github",
+    "clone",
+    "run",
+    "runner",
+    "fly"
+  ],
+  "author": "w3cj",
+  "license": "MIT",
+  "dependencies": {
+    "git-command-line": "^0.1.5",
+    "inquirer": "^1.0.2",
+    "safename": "^1.0.0"
+  }
+}
