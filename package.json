@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Command line tool to temporarily and easily clone and run repos on the fly",
   "main": "index.js",
+  "bin": {
+    "git-fly": "index.js"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

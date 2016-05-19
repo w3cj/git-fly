@@ -1,3 +1,5 @@
+#! /usr/bin/env node
+
 'use strict';
 
 const inquirer = require('inquirer');
@@ -33,6 +35,10 @@ let questions = [{
   type: 'input',
   name: 'run',
   message: 'How do you want to run it?'
+}, {
+  type: 'confirm',
+  name: 'open',
+  message: 'Would you like to open the repo in atom?'
 }];
 
 let running = false;
@@ -46,6 +52,10 @@ function ask() {
     cleanup = null;
     Git.clone(answers.repo + ' ' + safePath).then(function(res) {
       running = true;
+
+      if(answers.open) {
+        spawn('atom', [safePath]);
+      }
 
       cleanup = function() {
         console.log('Cleaning up...');
