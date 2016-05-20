@@ -26,3 +26,5 @@ For example: http-server, npm start etc.
 For example: atom, open etc.
 
 If a package.json file is detected, git-fly will offer to run npm install.
+
+![](http://i.imgur.com/bklW0Dt.png)

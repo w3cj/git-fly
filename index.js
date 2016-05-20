@@ -221,11 +221,6 @@ function startAgain() {
 process.on('SIGINT', function() {
   if (running) {
     running = false;
-
-    if (cleanupPaths.length > 0) {
-      cleanup();
-    }
-    startAgain();
   } else {
     process.exit();
   }
