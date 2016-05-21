@@ -27,4 +27,8 @@ For example: atom, open etc.
 
 If a package.json file is detected, git-fly will offer to run npm install.
 
-![](http://i.imgur.com/bklW0Dt.png)
+Also, a git URL can be passed as a parameter to `git-fly`
+
+`git-fly https://github.com/w3cj/api-baby-maker.git`
+
+![](http://i.imgur.com/6HwyoWC.png)
