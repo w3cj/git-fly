@@ -33,13 +33,11 @@ let questions = [{
 }, {
   type: 'input',
   name: 'run',
-  default: 'http-server',
-  message: 'run command (optional)(e.g. http-server, npm start):'
+  message: 'run command:'
 }, {
   type: 'input',
   name: 'open',
-  default: 'atom',
-  message: 'open command (optional)(e.g. atom, subl):'
+  message: 'open command:'
 }];
 
 function start() {
