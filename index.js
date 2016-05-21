@@ -25,6 +25,7 @@ let currentCleanup = 0;
 let questions = [{
   type: 'input',
   name: 'repo',
+  default: process.argv[2],
   message: 'repo URL (required):',
   validate: function(input) {
     return input ? true : 'You must enter a repo URL';
@@ -32,10 +33,12 @@ let questions = [{
 }, {
   type: 'input',
   name: 'run',
+  default: 'http-server',
   message: 'run command (optional)(e.g. http-server, npm start):'
 }, {
   type: 'input',
   name: 'open',
+  default: 'atom',
   message: 'open command (optional)(e.g. atom, subl):'
 }];
 
