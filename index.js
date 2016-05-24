@@ -135,7 +135,7 @@ function cleanupPath(path, cb) {
 function cleanup(done) {
   if (cleanupPaths.length > 0 && currentCleanup == 0) {
     console.log('Starting cleanup...');
-  } else {
+  } else if (cleanupPaths.length == 0) {
     console.log('So long and thanks for all the fish.');
     return process.exit();
   }
