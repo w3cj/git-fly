@@ -27,8 +27,17 @@ For example: atom, open etc.
 
 If a package.json file is detected, git-fly will offer to run npm install.
 
-Also, a git URL can be passed as a parameter to `git-fly`
+To skip the questions, you can pass options to git-fly:
 
-`git-fly https://github.com/w3cj/api-baby-maker.git`
+```
+  Usage: git-fly <git repo> [options]
+
+  Options:
+
+    -h, --help            output usage information
+    -V, --version         output the version number
+    -r, --run [command]   run command
+    -o, --open [command]  open command
+```
 
 ![](http://i.imgur.com/6HwyoWC.png)
