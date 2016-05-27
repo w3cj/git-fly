@@ -19,10 +19,20 @@ const Git = new GitCommandLine();
 const StringDecoder = require('string_decoder').StringDecoder;
 const decoder = new StringDecoder('utf8');
 
+const program = require('commander');
+const pkg = require('./package.json');
+
+program
+    .version(pkg.version)
+    .usage('<git repo> [options]')
+    .option('-r, --run [command]', 'run command')
+    .option('-o, --open [command]', 'open command')
+    .parse(process.argv);
+
 let running = false;
 let cleanupPaths = [];
 let currentCleanup = 0;
-let questions = [{
+let firstQuestion = {
   type: 'input',
   name: 'repo',
   default: process.argv[2],
@@ -30,15 +40,26 @@ let questions = [{
   validate: function(input) {
     return input ? true : 'You must enter a repo URL';
   }
-}, {
+};
+let secondQuestion = {
   type: 'input',
   name: 'run',
   message: 'run command:'
-}, {
+};
+let thirdQuestion = {
   type: 'input',
   name: 'open',
   message: 'open command:'
-}];
+};
+let questions = [firstQuestion];
+
+if (!program.run) {
+  questions.push(secondQuestion)
+}
+
+if (!program.open) {
+  questions.push(thirdQuestion)
+}
 
 function start() {
   console.log('Welcome to git-fly');
@@ -47,12 +68,13 @@ function start() {
 
   inquirer.prompt(questions).then(function(answers) {
     let safePath = '/tmp/' + safename(answers.repo);
+    let runCommand = answers.run || program.run
     running = false;
 
     function localRunIt() {
-      if (answers.run) {
+      if (runCommand) {
         running = true;
-        runIt(answers.run, safePath);
+        runIt(runCommand, safePath);
       } else {
         startAgain();
       }
@@ -89,8 +111,9 @@ function start() {
     function cloneRepo() {
       console.log('Cloning repo into ' + safePath);
       Git.clone(answers.repo + ' ' + safePath).then(function(res) {
-        if (answers.open) {
-          spawn(answers.open, [safePath]);
+        let openCommand = answers.open || program.open
+        if (openCommand) {
+          spawn(openCommand, [safePath]);
         }
 
         if(cleanupPaths.indexOf(safePath) == -1) {
